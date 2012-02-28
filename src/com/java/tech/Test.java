@@ -1,4 +1,4 @@
-package com.test;
+package com.java.tech;
 
 public class Test {
     

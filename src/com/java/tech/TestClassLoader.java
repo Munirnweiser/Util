@@ -1,4 +1,4 @@
-package com.test;
+package com.java.tech;
 
 public class TestClassLoader extends ClassLoader{
     public static void main(String[] args) throws ClassNotFoundException {

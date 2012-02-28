@@ -1,10 +1,10 @@
-package com.test;
+package com.java.tech;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class TestProxy implements MyProxyIf{
+public class DynamicProxy implements MyProxyIf{
 
     @Override
     public void doSomething() {
@@ -13,8 +13,8 @@ public class TestProxy implements MyProxyIf{
     
     public static void main(String[] args) {
         MyProxyHandler handler = new MyProxyHandler();
-        handler.setTestProxy(new TestProxy());
-        MyProxyIf p = (MyProxyIf) Proxy.newProxyInstance(TestProxy.class.getClassLoader(), new Class[]{MyProxyIf.class}, handler);
+        handler.setTestProxy(new DynamicProxy());
+        MyProxyIf p = (MyProxyIf) Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(), new Class[]{MyProxyIf.class}, handler);
         p.doSomething();
         System.out.println(p.getClass().getClassLoader());
         System.out.println(ClassLoader.getSystemClassLoader());
@@ -27,8 +27,8 @@ interface MyProxyIf {
 }
 
 class MyProxyHandler implements InvocationHandler{
-    private TestProxy testProxy;
-    public void setTestProxy(TestProxy testProxy){
+    private DynamicProxy testProxy;
+    public void setTestProxy(DynamicProxy testProxy){
         this.testProxy = testProxy;
     }
     @Override

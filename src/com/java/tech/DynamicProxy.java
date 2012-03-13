@@ -16,14 +16,18 @@ public class DynamicProxy implements MyProxyIf{
         handler.setTestProxy(new DynamicProxy());
         MyProxyIf p = (MyProxyIf) Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(), new Class[]{MyProxyIf.class}, handler);
         p.doSomething();
-        System.out.println(p.getClass().getClassLoader());
-        System.out.println(ClassLoader.getSystemClassLoader());
-        System.out.println(Thread.currentThread().getContextClassLoader());
+        p.test();
+    }
+
+    @Override
+    public void test() {
+        System.out.println("test.....");
     }
 }
 
 interface MyProxyIf {
     void doSomething();
+    void test();
 }
 
 class MyProxyHandler implements InvocationHandler{
@@ -34,6 +38,10 @@ class MyProxyHandler implements InvocationHandler{
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (testProxy != null){
+            if (method.getName().equals("test")){
+                System.out.println("do nothing");
+                return null;
+            }
             System.out.println("Before proxy call...");
             Object result = method.invoke(testProxy, args);
             System.out.println("After proxy call...");

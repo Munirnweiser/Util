@@ -2,10 +2,8 @@ package com.algorithm.common;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 public class Questions {
@@ -284,6 +282,12 @@ public class Questions {
             }
             return max;
     }
+    
+    /**
+     * 
+     * 题目：已有40亿个未排序不复数的int数，现提供一个新数，判断是否这40亿个数之一
+     * 原理：位图排序
+     */
     
     //main 方法可以写在static内部类里
     static class A{

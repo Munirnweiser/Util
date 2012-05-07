@@ -108,19 +108,22 @@ public class Sorts {
      * 
      */
     public static int[] quickSort(int[] a, int begin, int end){
-        if (begin <= end)return a;
-        int index = begin + (end - begin)/2;
+        if (begin >= end)return a;
+        int index = (end + begin)/2;
+        int pivot = a[index];
+        //将选取的数换到end处，以备之后swap回来
         swap(a,index,end);
         //基数，仅仅是数值
-        int pivot = a[index];
         //index从新开始计算，到最后结束时index的值即为pivot所在的位置，即index左边都是小于pivot的，而右边则是大于pivot
-        for (int i = index = begin; i < a.length; i++){
+        for (int i = index = begin; i < end; i++){
             //i的增长和index的增长不同步，index只有在碰到比pivot的小的数才增长
             //当a[i]>pivot时，index不变，也就是说index实际指示了第一个大于或等于pivot的数
-            if (a[i] < pivot){
+            if (a[i] <= pivot){
                 swap(a,index++,i);
             }
-        } //当遍历完成,index仍指向第一个大于或等于pivot的数，亦即pivot所在位置
+        }
+        //当遍历完成,index仍指向第一个大于或等于pivot的数，将之与末尾的pivot做swap
+        swap(a,index,end);//现在index上的数就是pivot,index左边的都小于等于它，右边的都大于等于它
         print(a);
         quickSort(a,begin,index - 1);
         quickSort(a,index+1,end);

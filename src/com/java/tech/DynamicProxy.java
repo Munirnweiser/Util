@@ -17,17 +17,28 @@ public class DynamicProxy implements MyProxyIf{
         MyProxyIf p = (MyProxyIf) Proxy.newProxyInstance(DynamicProxy.class.getClassLoader(), new Class[]{MyProxyIf.class}, handler);
         p.doSomething();
         p.test();
+        p.toString();
     }
 
     @Override
-    public void test() {
+    public final void test() {
         System.out.println("test.....");
+    }
+    
+    @Override
+    public String toString() {
+        System.out.println("Customized toString!");
+        return super.toString();
+    }
+    
+    public void test1(){
+        System.out.println("test1111111111111");
     }
 }
 
 interface MyProxyIf {
     void doSomething();
-    void test();
+    void  test();
 }
 
 class MyProxyHandler implements InvocationHandler{

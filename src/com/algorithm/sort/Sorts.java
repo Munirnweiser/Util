@@ -1,7 +1,5 @@
 package com.algorithm.sort;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class Sorts {
     public static void swap(int[] a, int i, int j){

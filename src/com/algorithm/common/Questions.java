@@ -2,17 +2,14 @@ package com.algorithm.common;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 public class Questions {
-    static int[] a ;
-    static{a[0]=1;}
-    static int[] b;
     
-    public static void main(String[] args) {
-    }
     /**
      * 题目：不使用"+","-","*","/"来实现加法
      * 
@@ -266,6 +263,7 @@ public class Questions {
         int num = 0;
         for (int i = 0; i < a.length; i++){
             sum += a[i];
+            //如果sum小于0，则将其置为0，否则负值与后边的数相加会肯定会使总的和变小
             if (sum < 0) sum = 0;
             if (sum > max) max = sum;
             num++;
@@ -284,16 +282,60 @@ public class Questions {
     }
     
     /**
+     * 题目：从两个字符串中找到至少三个连续字符相同的所有相同的字符串
      * 
-     * 题目：已有40亿个未排序不复数的int数，现提供一个新数，判断是否这40亿个数之一
-     * 原理：位图排序
      */
-    
-    //main 方法可以写在static内部类里
-    static class A{
-        public static void main(String[] args) {
-            int[] a = new int[]{-1, -2, -3, -10, -4, -7, -2, -5};
-            System.out.println(maxSubArray(a));
+    public static Set<String> find(String s1, String s2,int length){
+        Set<String> strs = new HashSet<String>();
+        String temp = "";
+        //遍历每一个字符，直到不能有length个连续字符的时候
+        for (int i = 0; i <= s1.length()-length; i++){
+            //取length长的字符去判断，如可用则继续取length+1长，否则break，因为这时不可能可用了（前length个字符都不在s2里，那length+1个更不可能）
+            for (int j = i + length; j <= s1.length(); j++){
+                temp = s1.substring(i,j);
+                if (s2.contains(temp)){
+                    strs.add(temp);
+                } else {
+                    break;
+                }
+            }
         }
+        return strs;
+    } 
+    
+    /**
+     * 题目：一个特别大的数组，每个数出现两次，只有两个数只出现一次，找到这两个数
+     * 原理：相同的数异或为0，0和1异或才为1，任何数和0异或不会变
+     */
+    public static void find2SingleNum(int[] a){
+        //存储异或值
+        int exclusiveOr = 0;
+        //所有的数总的异或值就是两个要找的数的异或值，因为其它相同的都异或为0了
+        for (int i : a){
+            exclusiveOr ^= i;
+        }
+        //找到exclusiveOr第一个为1的位，为1代表不同，亦即该位上两数一为0一为1，则找到该位为1的所有的数，再次异或，可得该位为1的两数之一
+        int temp = 0;
+        for (int i = 0; (1<<i) < exclusiveOr; i++){
+            temp = 1<<i;
+            if (temp == (exclusiveOr & temp)){
+                break;
+            }
+        }
+        int num1=0;
+        int num2=0;
+        for (int i : a){
+            if ((i & temp) == temp){
+                num1 ^= i;
+            } 
+        }
+        num2 = num1 ^ exclusiveOr;
+        System.out.println("num1:" + num1);
+        System.out.println("num2:" + num2);
+    }
+    
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4,5,6,7,8,9,9,7,6,4,3,2,1};
+        find2SingleNum(a);
     }
 }

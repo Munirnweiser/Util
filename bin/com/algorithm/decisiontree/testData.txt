@@ -1,0 +1,10 @@
+60,class1
+70,class1
+75,class1
+85,class2
+90,class2
+95,class2
+100,class1
+120,class1
+125,class1
+220,class1

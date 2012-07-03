@@ -169,6 +169,25 @@ public class Sorts {
         }
     }
     
+    /**
+     * 基数排序
+     * 
+     * 原理：
+     * 
+     * 适合用于对时间、字符串等这些整体权值未知的数据进行排序
+     */
+    public static int[] RadixSort(int[] a, int digital){
+        int temp;
+        //digital为最高位数
+        for (int i = 1; i <= digital; i++){
+            for (int j = 0; j < a.length; j++){
+                temp = (int) Math.pow(10, i);
+                int value = (a[j] % temp)/(temp/10);
+                
+            }
+        }
+        return a;
+    }
     public static void main(String[] args) {
         int[] a = new int[]{14,1,5,2,3,11,4};
         //bubbleSort(a);

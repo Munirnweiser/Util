@@ -336,6 +336,6 @@ public class Questions {
     
     public static void main(String[] args) {
         int[] a = {1,2,3,4,5,6,7,8,9,9,7,6,4,3,2,1};
-        find2SingleNum(a);
+        System.out.println("a1".compareToIgnoreCase("a20"));
     }
 }

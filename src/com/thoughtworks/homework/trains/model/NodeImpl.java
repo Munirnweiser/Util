@@ -1,5 +1,7 @@
 package com.thoughtworks.homework.trains.model;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,5 +38,20 @@ public class NodeImpl implements Node {
     public Set<Node> getThroughNodes() {
         return routeMap.keySet();
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj instanceof Node){
+            Node node = (Node) obj;
+            return this.name.equals(node.getName());
+        }
+        return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
 }

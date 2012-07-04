@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.thoughtworks.homework.trains.model.INode;
+import com.thoughtworks.homework.trains.model.TrainsFactory;
 
 public class Context {
     private List<INode> nodeList = new ArrayList<INode>();
     private Map<String,Object> attributeMap = new HashMap<String, Object>();
-    public Context(INode ... nodes){
-        for (INode node : nodes){
-            nodeList.add(node);
+    public Context(String ... names){
+        for (String name : names){
+            nodeList.add(TrainsFactory.getNode(name));
         }
     }
     

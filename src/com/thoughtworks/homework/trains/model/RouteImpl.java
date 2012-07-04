@@ -8,14 +8,11 @@ import com.thoughtworks.homework.trains.exception.UnSupportRouteException;
 public class RouteImpl implements IRoute{
     private List<INode> nodeList = new ArrayList<INode>();
 
-    public RouteImpl(INode ... nodes) throws UnSupportRouteException{
-        for (int i = 0; i < nodes.length - 1; i++){
-            if (nodes[i].hasThroughRouteTo(nodes[i+1])){
-                nodeList.add(nodes[i]);
-            } else {
+    RouteImpl(INode ... nodes) throws UnSupportRouteException{
+        for (INode node : nodes){
+            if (!addNode(node)){
                 throw new UnSupportRouteException();
             }
-            nodeList.add(nodes[nodes.length - 1]);
         }
     }
     
@@ -44,5 +41,20 @@ public class RouteImpl implements IRoute{
             distance += nodeList.get(i).getDistance(nodeList.get(i+1));
         }
         return distance;
+    }
+    
+    @Override
+    public boolean addNode(INode node) {
+        if (nodeList.size() == 0){
+            nodeList.add(node);
+        } else {
+            INode lastNode = nodeList.get(nodeList.size() - 1);
+            if (lastNode.hasThroughRouteTo(node)){
+                nodeList.add(node);
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }

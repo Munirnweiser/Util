@@ -1,6 +1,10 @@
 package com.thoughtworks.homework.trains.strategy;
 
+import java.util.List;
+
+import com.thoughtworks.homework.trains.model.IRoute;
+
 
 public interface IRouteStrategy {
-    public String execute(Context context);
+    public List<IRoute> execute(Context context);
 }

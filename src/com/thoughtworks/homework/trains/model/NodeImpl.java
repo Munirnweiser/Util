@@ -7,14 +7,9 @@ public class NodeImpl implements INode {
     private String name;
     private Map<INode, Integer> routeMap;
 
-    public NodeImpl(String name, Map<INode, Integer> routeMap) {
+    NodeImpl(String name, Map<INode, Integer> routeMap) {
         this.name = name;
         this.routeMap = routeMap;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
@@ -40,21 +35,5 @@ public class NodeImpl implements INode {
     @Override
     public boolean hasThroughRouteTo(INode n) {
         return routeMap.containsKey(n);
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj instanceof INode){
-            INode node = (INode) obj;
-            return this.name.equals(node.getName());
-        }
-        return false;
-    }
-    
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
     }
 }

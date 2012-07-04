@@ -5,6 +5,6 @@ import java.util.List;
 import com.thoughtworks.homework.trains.model.IRoute;
 
 
-public interface IRouteStrategy {
-    public List<IRoute> execute(Context context);
+public interface ICountRouteStrategy {
+    public List<IRoute> countRoutes(IContext context);
 }

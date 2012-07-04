@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.thoughtworks.homework.trains.model.INode;
 
-public class CountRoutesNumWithExactlyStopStrategy implements IRouteStrategy{
+public class CountRoutesNumWithExactlyStopStrategy implements ICountRouteStrategy{
     @Override
-    public String execute(Context context) {
+    public String execute(ContextImpl context) {
         List<INode> nodes = context.getNodeList();
         if (nodes.size() != 2)return null;
         INode startNode = nodes.get(0);

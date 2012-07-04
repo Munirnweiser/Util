@@ -17,16 +17,12 @@ public class RouteImpl implements IRoute{
     }
     
     @Override
-    public String getPath() {
-        StringBuilder sb = new StringBuilder();
+    public List<String> getNodeNames() {
+        List<String> list = new ArrayList<String>();
         for (INode node : nodeList){
-            sb.append(node.getName() + "-");
+            list.add(node.getName());
         }
-        if (nodeList.size() > 0){
-            return sb.substring(0, sb.length()-1);
-        } else {
-            return "";
-        } 
+        return list;
     }
 
     @Override
@@ -43,8 +39,7 @@ public class RouteImpl implements IRoute{
         return distance;
     }
     
-    @Override
-    public boolean addNode(INode node) {
+    boolean addNode(INode node) {
         if (nodeList.size() == 0){
             nodeList.add(node);
         } else {

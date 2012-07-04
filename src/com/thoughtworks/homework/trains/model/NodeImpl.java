@@ -1,15 +1,13 @@
 package com.thoughtworks.homework.trains.model;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class NodeImpl implements Node {
+public class NodeImpl implements INode {
     private String name;
-    private Map<Node, Integer> routeMap;
+    private Map<INode, Integer> routeMap;
 
-    public NodeImpl(String name, Map<Node, Integer> routeMap) {
+    public NodeImpl(String name, Map<INode, Integer> routeMap) {
         this.name = name;
         this.routeMap = routeMap;
     }
@@ -25,26 +23,31 @@ public class NodeImpl implements Node {
     }
     
     @Override
-    public void setRoute(Node n, int distance) {
+    public void setRoute(INode n, int distance) {
         routeMap.put(n, distance);
     }
 
     @Override
-    public Integer getDistance(Node n) {
+    public Integer getDistance(INode n) {
         return routeMap.get(n);
     }
 
     @Override
-    public Set<Node> getThroughNodes() {
+    public Set<INode> getThroughNodes() {
         return routeMap.keySet();
+    }
+    
+    @Override
+    public boolean hasThroughRouteTo(INode n) {
+        return routeMap.containsKey(n);
     }
     
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj instanceof Node){
-            Node node = (Node) obj;
+        if (obj instanceof INode){
+            INode node = (INode) obj;
             return this.name.equals(node.getName());
         }
         return false;

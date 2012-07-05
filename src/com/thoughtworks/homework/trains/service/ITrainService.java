@@ -7,6 +7,8 @@ import com.thoughtworks.homework.trains.strategy.IContext;
 
 public interface ITrainService {
     void serviceThroughRoute(String startNodeName, String toNodeName, int distance);
-    int getDistanceOfRoute(String...names);
+
+    int getDistanceOfRoute(String... names);
+
     List<IRoute> countRoutes(IContext context);
 }

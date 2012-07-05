@@ -6,10 +6,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.thoughtworks.homework.trains.TrainsMain;
+import com.thoughtworks.homework.trains.service.ITrainService;
 import com.thoughtworks.homework.trains.service.TrainServiceImpl;
 
 public class TrainsTest extends TestCase {
-    private TrainServiceImpl trainService;
+    private ITrainService trainService;
     private int result;
 
     @Before
@@ -69,7 +71,7 @@ public class TrainsTest extends TestCase {
     //In the sample data below, there are two such trips: C-D-C (2 stops). and C-E-B-C (3 stops).
     @Test
     public void testOutPut6() {
-        result = trainService.getNumberOfRouteWithMaxStop("C", "C", 3);
+        result = TrainsMain.getNumberOfRouteWithMaxStop("C", "C", 3);
         assertEquals(2, result);
     }
     
@@ -77,21 +79,21 @@ public class TrainsTest extends TestCase {
     //there are three such trips: A to C (via B,C,D); A to C (via D,C,D); and A to C (via D,E,B).
     @Test
     public void testOutPut7() {
-        result = trainService.getNumberOfRouteWithExactlyStop("A", "C", 4);
+        result = TrainsMain.getNumberOfRouteWithExactlyStop("A", "C", 4);
         assertEquals(3, result);
     }
     
     // 8. The length of the shortest route (in terms of distance to travel) from A to C.
     @Test
     public void testOutPut8() {
-        result = trainService.getShortestDistance("A", "C");
+        result = TrainsMain.getShortestDistance("A", "C");
         assertEquals(9, result);
     }
     
     // 9. The length of the shortest route (in terms of distance to travel) from B to B.
     @Test
     public void testOutPut9() {
-        result = trainService.getShortestDistance("B", "B");
+        result = TrainsMain.getShortestDistance("B", "B");
         assertEquals(9, result);
     }
     
@@ -99,7 +101,7 @@ public class TrainsTest extends TestCase {
     //In the sample data, the trips are: CDC, CEBC, CEBCDC, CDCEBC, CDEBC, CEBCEBC, CEBCEBCEBC. 
     @Test
     public void testOutPut10() {
-        result = trainService.getNumberOfRouteWithLimitedDistance("B", "B", 30);
+        result = TrainsMain.getNumberOfRouteWithLimitedDistance("C", "C", 30);
         assertEquals(7, result);
     }
     

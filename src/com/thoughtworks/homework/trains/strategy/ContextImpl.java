@@ -5,30 +5,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.thoughtworks.homework.trains.TrainsFactory;
 import com.thoughtworks.homework.trains.model.INode;
-import com.thoughtworks.homework.trains.model.TrainsFactory;
 
-public class ContextImpl implements IContext{
-    private ICountRouteStrategy strategy = new GetRoutesBetweenTwoNodeStrategy();
+public class ContextImpl implements IContext {
+    private ICountRouteStrategy strategy = new CountNoCircleRoutesBetweenTwoNodeStrategy();
     private List<INode> nodeList = new ArrayList<INode>();
-    private Map<String,Object> attributeMap = new HashMap<String, Object>();
-    public ContextImpl(String ... names){
-        for (String name : names){
+    private Map<String, Object> attributeMap = new HashMap<String, Object>();
+
+    public ContextImpl(String... names) {
+        for (String name : names) {
             nodeList.add(TrainsFactory.getNode(name));
         }
     }
-    
-    public void setAttribute(String param, Object value){
+
+    public void setAttribute(String param, Object value) {
         attributeMap.put(param, value);
     }
-    
-    public Object getAttribute(String param){
+
+    public Object getAttribute(String param) {
         return attributeMap.get(param);
     }
-    
-    public List<String> getNodeNames(){
+
+    public List<String> getNodeNames() {
         List<String> list = new ArrayList<String>();
-        for (INode node : nodeList){
+        for (INode node : nodeList) {
             list.add(node.getName());
         }
         return list;

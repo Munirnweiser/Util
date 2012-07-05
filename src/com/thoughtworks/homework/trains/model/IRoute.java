@@ -1,9 +1,14 @@
 package com.thoughtworks.homework.trains.model;
 
-import java.util.List;
-
 public interface IRoute {
-    public List<String> getNodeNames();
-    public int getStops();
-    public int getDistance();
+    String[] getNodeNames();
+
+    int getStops();
+
+    int getDistance();
+
+    boolean addNode(String nodeName);
+
+    boolean contains(String nodeName);
+
 }

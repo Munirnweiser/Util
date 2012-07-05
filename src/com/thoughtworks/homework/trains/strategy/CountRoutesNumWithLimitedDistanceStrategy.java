@@ -8,7 +8,7 @@ import com.thoughtworks.homework.trains.TrainsFactory;
 import com.thoughtworks.homework.trains.model.INode;
 import com.thoughtworks.homework.trains.model.IRoute;
 
-public class CountRoutesNumWithExactlyStopStrategy implements ICountRouteStrategy {
+public class CountRoutesNumWithLimitedDistanceStrategy implements ICountRouteStrategy {
     private ICountRouteStrategy coutRouteStrategy = new CountNoCircleRoutesBetweenTwoNodeStrategy();
     private List<IRoute> routeList;
 
@@ -18,30 +18,30 @@ public class CountRoutesNumWithExactlyStopStrategy implements ICountRouteStrateg
         if (nodes.size() != 2)
             return null;
         INode endNode = TrainsFactory.getNode(nodes.get(1));
-        int exactlyStop = (Integer) context.getAttribute(Constants.EXACTLY_STOP);
+        int limitedDistance = (Integer) context.getAttribute(Constants.LIMITED_DISTANCE);
         List<IRoute> noCircleRoutes = coutRouteStrategy.countRoutes(context);
         IContext tempContext = TrainsFactory.getContext(endNode.getName(),endNode.getName());
         List<IRoute> circleRouteList = coutRouteStrategy.countRoutes(tempContext);
         routeList = new ArrayList<IRoute>();
-        getRoutesWithExactlyStop(noCircleRoutes, circleRouteList, exactlyStop);
+        getRoutesWithLimitedDistance(noCircleRoutes, circleRouteList, limitedDistance);
         return routeList;
     }
     
-    private void getRoutesWithExactlyStop(List<IRoute> noCircleList, List<IRoute> circleRouteList, int stop){
+    private void getRoutesWithLimitedDistance(List<IRoute> noCircleList, List<IRoute> circleRouteList, int limit){
         for (IRoute route : noCircleList){
-            if (route.getStops() == stop){
+            if (route.getDistance() < limit){
                 routeList.add(route);
-            } else if (route.getStops() < stop){
                 for (IRoute r : circleRouteList){
-                    if ((stop - route.getStops()) % r.getStops() == 0){
-                        int num = (stop - route.getStops()) / r.getStops();
-                        IRoute tempRoute = TrainsFactory.getRoute(route.getNodeNames());
+                    int num = (limit - route.getDistance()) / r.getDistance();
+                    if (num * r.getDistance() < (limit - route.getDistance())){
+                        IRoute tempRoute = route;
                         for (int i = 0 ; i < num; i++){
+                            tempRoute = TrainsFactory.getRoute(tempRoute.getNodeNames());
                             for (int j = 1; j < r.getNodeNames().length; j++){
                                 tempRoute.addNode(r.getNodeNames()[j]);
                             }
+                            routeList.add(tempRoute);
                         }
-                        routeList.add(tempRoute);
                     }
                 }
             }

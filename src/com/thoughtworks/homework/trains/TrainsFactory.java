@@ -17,6 +17,7 @@ public class TrainsFactory {
     private TrainsFactory() {
     }
 
+    //Make sure get the same node by String name
     public static INode getNode(String name) {
         INode node = nodesMap.get(name);
         if (node == null) {
@@ -36,26 +37,12 @@ public class TrainsFactory {
             nodes[i] = getNode(nodeNames[i]);
         }
         try {
+          //Make sure get independent route object
             route = new RouteImpl(nodes);
         } catch (UnSupportRouteException e) {
             return null;
         }
         return route;
-    }
-    
-    public static IRoute getConcatRoute(IRoute route, IRoute newRoute){
-        //route and newRoute all not null
-        String[] nodeNames = route.getNodeNames();
-        String[] newNodeNames = newRoute.getNodeNames();
-        if (nodeNames[nodeNames.length-1].equals(newNodeNames[0])){
-            IRoute returnRoute = TrainsFactory.getRoute(nodeNames);
-            for (int i = 1; i < newNodeNames.length; i++){
-                returnRoute.addNode(newNodeNames[i]);
-            }
-            return returnRoute;
-        } else {
-            return route;
-        }
     }
     
     public static IContext getContext(String ... nodeNames){

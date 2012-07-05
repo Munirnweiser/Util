@@ -20,6 +20,7 @@ public class CountRoutesNumWithExactlyStopStrategy implements ICountRouteStrateg
         INode endNode = TrainsFactory.getNode(nodes.get(1));
         int exactlyStop = (Integer) context.getAttribute(Constants.EXACTLY_STOP);
         List<IRoute> noCircleRoutes = coutRouteStrategy.countRoutes(context);
+        //get one circle route, from endNode to endNode
         IContext tempContext = TrainsFactory.getContext(endNode.getName(),endNode.getName());
         List<IRoute> circleRouteList = coutRouteStrategy.countRoutes(tempContext);
         routeList = new ArrayList<IRoute>();
@@ -33,6 +34,7 @@ public class CountRoutesNumWithExactlyStopStrategy implements ICountRouteStrateg
                 routeList.add(route);
             } else if (route.getStops() < stop){
                 for (IRoute r : circleRouteList){
+                    // concat endNode's circle route to reach the stop 
                     if ((stop - route.getStops()) % r.getStops() == 0){
                         int num = (stop - route.getStops()) / r.getStops();
                         IRoute tempRoute = TrainsFactory.getRoute(route.getNodeNames());

@@ -11,9 +11,9 @@ public class CountShortestDistanceStrategy implements ICountRouteStrategy {
     @Override
     public List<IRoute> countRoutes(IContext context) {
         List<IRoute> returnRoutes = new ArrayList<IRoute>();
-        List<IRoute> existingRoutes = coutRouteStrategy.countRoutes(context);
+        List<IRoute> noCircleRoutes = coutRouteStrategy.countRoutes(context);
         IRoute shortestRoute = null;
-        for (IRoute route : existingRoutes) {
+        for (IRoute route : noCircleRoutes) {
             if (shortestRoute == null || route.getDistance() < shortestRoute.getDistance()){
                 shortestRoute = route;
             } 

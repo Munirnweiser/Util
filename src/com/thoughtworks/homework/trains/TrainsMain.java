@@ -89,13 +89,14 @@ public class TrainsMain {
     }
 
     public static void main(String[] args) throws IOException {
-            print("Please Input the graph(for example:AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7):");
+            print("Please Input the graph for nodes A, B, C, D, E. For example: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7.");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String graph = br.readLine();
             try {
                 initTrainServiceData(graph);
             } catch (Exception e) {
                 print("Error input!! Please rerun the program.");
+                return;
             }
             int i = 0;
             print("Output #" + (++i) +":" + getDistanceOfRoute("A", "B", "C"));

@@ -10,5 +10,6 @@ public interface ITrainService {
 
     int getDistanceOfRoute(String... names);
 
+    //count routes according to strategy
     List<IRoute> countRoutes(IContext context);
 }

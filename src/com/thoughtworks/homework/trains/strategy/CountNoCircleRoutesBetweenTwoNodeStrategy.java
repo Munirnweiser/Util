@@ -18,23 +18,29 @@ public class CountNoCircleRoutesBetweenTwoNodeStrategy implements ICountRouteStr
         INode startNode = TrainsFactory.getNode(nodes.get(0));
         INode endNode = TrainsFactory.getNode(nodes.get(1));
         list = new ArrayList<IRoute>();
-        getRoutes(startNode, endNode, null);
+        getNoCircleRoutes(startNode, endNode, null);
         return list;
     }
 
-    private void getRoutes(INode startNode, INode endNode, IRoute currRoute) {
+    /*
+     * get routes that have no circle(no repeating node,such as A-B-C) 
+     * or only have one circle(when startNode is also endNode, such as C-D-C)
+     */
+    private void getNoCircleRoutes(INode startNode, INode endNode, IRoute currRoute) {
         if (currRoute == null) {
             currRoute = TrainsFactory.getRoute(startNode.getName());
         } 
         for (INode node : startNode.getThroughNodes()) {
+            //get independent route object
             IRoute tempRoute = TrainsFactory.getRoute(currRoute.getNodeNames());
             if (node == endNode){
                 tempRoute.addNode(endNode.getName());
                 list.add(tempRoute);
             }
-            if (!tempRoute.contains(node.getName())){
+            //no repeating node, then do the recursion
+            else if (!tempRoute.contains(node.getName())){
                 tempRoute.addNode(node.getName());
-                getRoutes(node, endNode, tempRoute);
+                getNoCircleRoutes(node, endNode, tempRoute);
             }
         }
     }

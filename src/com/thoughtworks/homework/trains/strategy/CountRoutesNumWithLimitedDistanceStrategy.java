@@ -20,6 +20,7 @@ public class CountRoutesNumWithLimitedDistanceStrategy implements ICountRouteStr
         INode endNode = TrainsFactory.getNode(nodes.get(1));
         int limitedDistance = (Integer) context.getAttribute(Constants.LIMITED_DISTANCE);
         List<IRoute> noCircleRoutes = coutRouteStrategy.countRoutes(context);
+        //one circle
         IContext tempContext = TrainsFactory.getContext(endNode.getName(),endNode.getName());
         List<IRoute> circleRouteList = coutRouteStrategy.countRoutes(tempContext);
         routeList = new ArrayList<IRoute>();
@@ -32,7 +33,9 @@ public class CountRoutesNumWithLimitedDistanceStrategy implements ICountRouteStr
             if (route.getDistance() < limit){
                 routeList.add(route);
                 for (IRoute r : circleRouteList){
+                    //could concat num circle
                     int num = (limit - route.getDistance()) / r.getDistance();
+                    // less than limit, prevent equals
                     if (num * r.getDistance() < (limit - route.getDistance())){
                         IRoute tempRoute = route;
                         for (int i = 0 ; i < num; i++){

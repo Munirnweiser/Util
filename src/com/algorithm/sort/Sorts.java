@@ -44,6 +44,29 @@ public class Sorts {
     }
     
     /**
+     * 选择排序
+     * 平均情况：O（n^2）
+     * 最好情况：O（n^2）
+     * 最坏情况：O（n^2）
+     */
+    public static int[] chooseSort(int[] a){
+        if (a == null || a.length == 0)return null;
+        int min = 0;
+        for (int i = 0; i < a.length - 1; i++){
+            min = i;
+            for (int j = i + 1; j < a.length; j++){
+                if (a[j] < a[min]){
+                    min = j;
+                }
+            }
+            if (min != i){
+                swap(a, min, i);
+            }
+        }
+        return a;
+    }
+
+    /**
      * 插入排序,每次插入第K+1到前K个数中的合适位置（从后比较，每次都swap,直到位置合适）
      * 平均情况：O（n^2）
      * 最好情况：O（n）
@@ -127,6 +150,18 @@ public class Sorts {
         quickSort(a,index+1,end);
         return a;
     }
+    
+    /**
+     * 希尔排序
+     * 平均情况：O（n^2）
+     * 最好情况：O（n^2）
+     * 最坏情况：O（n^2）
+     */
+    public static int[] shellSort(int[] a){
+        if (a == null || a.length == 0)return null;
+        return a;
+    }
+
     
     /**
      * 位图排序

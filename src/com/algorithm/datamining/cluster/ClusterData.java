@@ -1,11 +1,9 @@
-package com.algorithm.cluster;
+package com.algorithm.datamining.cluster;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import com.algorithm.cluster.ClusterData.Cluster;
-import com.algorithm.cluster.PointData.Point;
+import com.algorithm.datamining.cluster.PointData.Point;
 
 public class ClusterData {
 	

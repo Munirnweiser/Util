@@ -1,4 +1,4 @@
-package com.algorithm.apriori_eclat;
+package com.algorithm.datamining.apriori_eclat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -131,7 +131,6 @@ public class Eclat implements Algorithm{
 
 	@Override
 	public void finish() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

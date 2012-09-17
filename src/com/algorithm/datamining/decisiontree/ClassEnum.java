@@ -1,4 +1,4 @@
-package com.algorithm.decisiontree;
+package com.algorithm.datamining.decisiontree;
 
 enum ClassEnum {
 	 CLASS1,

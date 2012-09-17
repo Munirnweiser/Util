@@ -15,13 +15,10 @@ public class RMI_Client implements Remote{
             System.out.println(b.runBusiness());
             System.out.println(b.getData().getAddress());
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (NotBoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

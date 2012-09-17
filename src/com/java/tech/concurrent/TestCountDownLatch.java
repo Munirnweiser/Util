@@ -18,7 +18,6 @@ public class TestCountDownLatch {
                 try {
                     ready.await();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 System.out.println("Man_" + j + " finished!");
@@ -33,7 +32,6 @@ public class TestCountDownLatch {
             finish.await();
             System.out.println("All finished!!");
         } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
     }

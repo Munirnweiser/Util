@@ -1,4 +1,4 @@
-package com.algorithm.cluster;
+package com.algorithm.datamining.cluster;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
-import com.algorithm.cluster.ClusterData.Cluster;
-import com.algorithm.cluster.PointData.Point;
+import com.algorithm.datamining.cluster.ClusterData.Cluster;
+import com.algorithm.datamining.cluster.PointData.Point;
 
 public class ClusterAnalysis {
 	private ClusterData clusters = new ClusterData();
@@ -53,13 +53,11 @@ public class ClusterAnalysis {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -163,16 +161,13 @@ public class ClusterAnalysis {
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!!");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

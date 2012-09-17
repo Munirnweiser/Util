@@ -1,4 +1,4 @@
-package com.algorithm.apriori_eclat;
+package com.algorithm.datamining.apriori_eclat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;

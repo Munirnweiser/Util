@@ -1,4 +1,4 @@
-package com.algorithm.apriori_eclat;
+package com.algorithm.datamining.apriori_eclat;
 
 
 import java.io.BufferedReader;
@@ -33,13 +33,10 @@ public class TestAlgorithm implements Algorithm{
 			Algorithm al = (Algorithm) c.newInstance();
 			this.setAlgorithm(al);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -95,13 +92,10 @@ public class TestAlgorithm implements Algorithm{
 				dataList.add(list);
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return dataList;
@@ -135,13 +129,11 @@ public class TestAlgorithm implements Algorithm{
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

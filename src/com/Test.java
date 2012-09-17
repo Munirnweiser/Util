@@ -2,48 +2,47 @@ package com;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 
-public class Test implements Serializable{
-    private String str;
-    public String getStr() {
-        return str;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "testName", namespace = "testNamespace")
+public class Test<Integer> implements Serializable {
+    protected Test() throws IOException {
+        throw new IOException();
     }
-    public void setStr(String str) {
-        this.str = str;
+    public static class IRunnable implements Runnable {
+        final List<String> list = new ArrayList<String>();
+        private ScheduledFuture future;
+        public void setFuture(ScheduledFuture future){
+            this.future = future;
+        }
+        private ScheduledExecutorService pool;
+        public void setScheduledExecutorService(ScheduledExecutorService pool){
+            this.pool = pool;
+        }
+        @Override
+        public void run(){
+            if (list.size() < 5){
+                list.add("1");
+                System.out.println(list.size() + "..add");
+            } else {
+                future.cancel(true);
+                System.out.println("cancel....");
+                pool.shutdown();
+            }
+            System.out.println(11111);
+        }
     }
-    private void readObject(java.io.ObjectInputStream in){
-        System.out.println("test");
-    }
-    public void test(){
-        System.out.println("test");
+    public static void main(String[] args) throws IOException, ClassNotFoundException, JAXBException, InterruptedException, ExecutionException {
+        List<String> list = null;
     }
     
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        char c = 'a';
-        int num = 0;
-        for (int i = 0; i < 16; i++){
-            if ((c & (1 << i)) == 1 << i){
-                num++;
-            }
-        }
-        System.out.println(num);
-    }
-}
-class T extends Test{
-    @Override
-    public void test() {
-        System.out.println("TT");
-    }
-    public double test(String s){
-        System.out.println("String");
-        return 1d;
-    }
-    public void test(int[] s){
-        System.out.println("int[]");
-    }
-    public <E> E t(List<? extends E> l, E e){
-        return e;
-    }
+    
 }

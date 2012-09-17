@@ -1,4 +1,4 @@
-package com.algorithm.cluster;
+package com.algorithm.datamining.cluster;
 
 import java.util.ArrayList;
 import java.util.List;

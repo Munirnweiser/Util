@@ -1,4 +1,4 @@
-package com.algorithm.decisiontree;
+package com.algorithm.datamining.decisiontree;
 
 public class EntityData {
 	private ClassEnum classAttribute;
